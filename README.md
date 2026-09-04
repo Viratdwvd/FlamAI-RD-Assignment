@@ -1,5 +1,5 @@
 # FlamAI R&D Assignment — Parametric Curve Parameter Recovery
-
+- **Desmos link:** https://www.desmos.com/calculator/mxidc3gcwo
 ## 1. Objective
 
 The objective of this assignment is to recover the three unknown parameters

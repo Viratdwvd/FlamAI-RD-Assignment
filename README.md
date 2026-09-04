@@ -152,7 +152,33 @@ the specified parameter bounds.
 
 ## 5. Parameter Estimation
 
-The implementation uses bounded nonlinear least squares:
+The parameter recovery problem is solved as a bounded nonlinear least-squares
+optimization using `scipy.optimize.least_squares`.
 
-```python
-scipy.optimize.least_squares
+The optimizer estimates:
+
+- \(\theta\): rotation angle
+- \(M\): exponential growth/decay parameter
+- \(X\): horizontal translation
+
+The optimization respects the parameter bounds specified in the assignment:
+
+\[
+0^\circ < \theta < 50^\circ
+\]
+
+\[
+-0.05 < M < 0.05
+\]
+
+\[
+0 < X < 100
+\]
+
+The implementation is contained in:
+
+```text
+src/fit.py
+src/objective.py
+src/model.py
+src/inverse.py

@@ -17,25 +17,18 @@ y(t)=42+t\sin(\theta)
 +e^{M|t|}\sin(0.3t)\cos(\theta)
 \]
 
-with the constraints:
+The three unknown parameters are **θ**, **M**, and **X**.
+The parameter constraints are:
 
-\[
-0^\circ < \theta < 50^\circ
-\]
+**0° < θ < 50°**
 
-\[
--0.05 < M < 0.05
-\]
+**−0.05 < M < 0.05**
 
-\[
-0 < X < 100
-\]
+**0 < X < 100**
 
-and
+and:
 
-\[
-6 < t < 60
-\]
+**6 < t < 60**
 
 The dataset contains 1500 observed `(x,y)` points.
 
@@ -52,19 +45,13 @@ The recovered parameters are:
 | M | **0.0300000000** |
 | X | **55.0000000000** |
 
-Therefore, the final parameter values are:
+Therefore, the final recovered parameters are:
 
-\[
-\boxed{\theta=30^\circ}
-\]
-
-\[
-\boxed{M=0.03}
-\]
-
-\[
-\boxed{X=55}
-\]
+| Parameter | Value |
+|:---:|---:|
+| **θ** | **30°** |
+| **M** | **0.03** |
+| **X** | **55** |
 
 ### Desmos / LaTeX submission string
 
@@ -120,41 +107,41 @@ pytest tests/
 Define the translated coordinates:
 
 \[
-u=x-X
+u = x - X
 \]
 
 \[
-v=y-42
+v = y - 42
 \]
 
 The original equations become:
 
 \[
-u=t\cos(\theta)
--e^{M|t|}\sin(0.3t)\sin(\theta)
+u = t\cos(θ)
+-e^{M|t|}\sin(0.3t)\sin(θ)
 \]
 
 \[
-v=t\sin(\theta)
-+e^{M|t|}\sin(0.3t)\cos(\theta)
+v = t\sin(θ)
++e^{M|t|}\sin(0.3t)\cos(θ)
 \]
 
 Applying the inverse rotation gives:
 
 \[
-t=u\cos(\theta)+v\sin(\theta)
+t = u\cos(θ) + v\sin(θ)
 \]
 
-and
+and:
 
 \[
-r=-u\sin(\theta)+v\cos(\theta)
+r = -u\sin(θ) + v\cos(θ)
 \]
 
 Therefore:
 
 \[
-r=e^{M|t|}\sin(0.3t)
+r = e^{M|t|}\sin(0.3t)
 \]
 
 This transformation separates the approximately linear coordinate `t`
@@ -167,31 +154,30 @@ from the oscillatory component `r`.
 For a candidate parameter vector
 
 \[
-p=(\theta,M,X)
+p = (θ, M, X)
 \]
 
 the transformed observations are:
 
 \[
-t_i=(x_i-X)\cos(\theta)+(y_i-42)\sin(\theta)
+t_i = (x_i-X)\cos(θ) + (y_i-42)\sin(θ)
 \]
 
 \[
-r_i=-(x_i-X)\sin(\theta)+(y_i-42)\cos(\theta)
+r_i = -(x_i-X)\sin(θ) + (y_i-42)\cos(θ)
 \]
 
 The model predicts:
 
 \[
-\hat r_i=e^{M|t_i|}\sin(0.3t_i)
+\hat{r}_i = e^{M|t_i|}\sin(0.3t_i)
 \]
 
 The residual for each observation is:
 
 \[
-\epsilon_i=r_i-\hat r_i
+ε_i = r_i-\hat{r}_i
 \]
-
 The parameters are estimated by minimizing these residuals subject to
 the specified parameter bounds.
 

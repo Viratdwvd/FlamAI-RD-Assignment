@@ -74,7 +74,7 @@ parametric equation):
 \left(t*\cos(0.5236)-e^{0.03\left|t\right|}\cdot\sin(0.3t)\sin(0.5236)+55,42+t*\sin(0.5236)+e^{0.03\left|t\right|}\cdot\sin(0.3t)\cos(0.5236)\right)
 
 with domain `6 ≤ t ≤ 60`. Pasting this into Desmos parametric graphing
-reproduces the observed curve exactly (see Desmos link above).
+reproduces the observed curve to very high numerical accuracy (see Desmos link above).
 
 ### Validation Results
 
@@ -230,3 +230,26 @@ src/objective.py
 src/model.py
 src/inverse.py
 ```
+## Final Answer
+
+The recovered unknown parameters are:
+
+\[
+\boxed{\theta=30^\circ}
+\]
+
+\[
+\boxed{M=0.03}
+\]
+
+\[
+\boxed{X=55}
+\]
+
+The fitted curve achieves:
+
+- **L1 distance:** \(1.469\times10^{-4}\)
+- **RMSE:** \(3.96\times10^{-4}\)
+
+The complete plugged-in parametric equation is provided below and can be
+directly entered into Desmos.

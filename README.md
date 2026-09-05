@@ -1,3 +1,77 @@
+# FlamAI R&D Assignment — Parametric Curve Parameter Recovery
+- **Desmos link:** https://www.desmos.com/calculator/mxidc3gcwo
+## 1. Objective
+
+The objective of this assignment is to recover the three unknown parameters
+`θ`, `M`, and `X` from the provided `xy_data.csv` dataset.
+
+The given parametric curve is:
+
+\[
+x(t)=t\cos(\theta)
+-e^{M|t|}\sin(0.3t)\sin(\theta)+X
+\]
+
+\[
+y(t)=42+t\sin(\theta)
++e^{M|t|}\sin(0.3t)\cos(\theta)
+\]
+
+with the constraints:
+
+\[
+0^\circ < \theta < 50^\circ
+\]
+
+\[
+-0.05 < M < 0.05
+\]
+
+\[
+0 < X < 100
+\]
+
+and
+
+\[
+6 < t < 60
+\]
+
+The dataset contains 1500 observed `(x,y)` points.
+
+---
+
+## 2. Solution
+
+The recovered parameters are:
+
+| Parameter | Recovered value |
+|---|---:|
+| θ | **30.0000000000°** |
+| θ | **0.5235987756 rad** |
+| M | **0.0300000000** |
+| X | **55.0000000000** |
+
+Therefore, the final parameter values are:
+
+\[
+\boxed{\theta=30^\circ}
+\]
+
+\[
+\boxed{M=0.03}
+\]
+
+\[
+\boxed{X=55}
+\]
+
+### Desmos / LaTeX submission string
+
+Following the required submission format (values plugged into the given
+parametric equation):
+
+\left(t*\cos(0.5236)-e^{0.03\left|t\right|}\cdot\sin(0.3t)\sin(0.5236)+55,42+t*\sin(0.5236)+e^{0.03\left|t\right|}\cdot\sin(0.3t)\cos(0.5236)\right)
 
 with domain `6 ≤ t ≤ 60`. Pasting this into Desmos parametric graphing
 reproduces the observed curve exactly (see Desmos link above).

@@ -1,70 +1,43 @@
-# FlamAI R&D Assignment — Parametric Curve Parameter Recovery
-- **Desmos link:** https://www.desmos.com/calculator/mxidc3gcwo
-## 1. Objective
 
-The objective of this assignment is to recover the three unknown parameters
-`θ`, `M`, and `X` from the provided `xy_data.csv` dataset.
+with domain `6 ≤ t ≤ 60`. Pasting this into Desmos parametric graphing
+reproduces the observed curve exactly (see Desmos link above).
 
-The given parametric curve is:
+### Validation Results
 
-\[
-x(t)=t\cos(\theta)
--e^{M|t|}\sin(0.3t)\sin(\theta)+X
-\]
+Running `src/validate.py` against the 1500 observed points gives:
 
-\[
-y(t)=42+t\sin(\theta)
-+e^{M|t|}\sin(0.3t)\cos(\theta)
-\]
-
-with the constraints:
-
-\[
-0^\circ < \theta < 50^\circ
-\]
-
-\[
--0.05 < M < 0.05
-\]
-
-\[
-0 < X < 100
-\]
-
-and
-
-\[
-6 < t < 60
-\]
-
-The dataset contains 1500 observed `(x,y)` points.
-
----
-
-## 2. Solution
-
-The recovered parameters are:
-
-| Parameter | Recovered value |
+| Metric | Value |
 |---|---:|
-| θ | **30.0000000000°** |
-| θ | **0.5235987756 rad** |
-| M | **0.0300000000** |
-| X | **55.0000000000** |
+| Observed points | 1500 |
+| Uniformly sampled comparison points | 1497 |
+| **L1 distance** | **1.469 × 10⁻⁴** |
+| RMSE | 3.96 × 10⁻⁴ |
 
-Therefore, the final parameter values are:
+Both figures are effectively zero relative to the data's scale (x, y ~ 46–110),
+confirming the recovered parameters reproduce the ground-truth curve almost exactly.
 
-\[
-\boxed{\theta=30^\circ}
-\]
+**Raw observed data:**
 
-\[
-\boxed{M=0.03}
-\]
+![Observed XY data](results/raw_data.png)
 
-\[
-\boxed{X=55}
-\]
+**Recovered curve overlaid on observed data:**
+
+![Fitted curve vs observed data](results/fitted_curve.png)
+
+### How to Reproduce
+
+```bash
+pip install -r requirements.txt
+
+# Recover theta, M, X from data/xy_data.csv
+python -m src.fit
+
+# Validate the fit (L1/RMSE + generates results/fitted_curve.png)
+python -m src.validate
+
+# Run the test suite
+pytest tests/
+```
 
 ---
 
@@ -182,3 +155,4 @@ src/fit.py
 src/objective.py
 src/model.py
 src/inverse.py
+```
